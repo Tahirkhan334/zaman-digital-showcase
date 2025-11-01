@@ -94,6 +94,19 @@ const Hero = () => {
               size="lg"
               variant="outline"
               onClick={() => {
+                const link = document.createElement("a");
+                link.href = "/resume.pdf";
+                link.download = "Tahir_Zaman_Resume.pdf";
+                link.click();
+              }}
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            >
+              Download Resume
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => {
                 const element = document.querySelector("#contact");
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
