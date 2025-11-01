@@ -18,6 +18,31 @@ const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  };
+
   return (
     <section id="skills" className="py-20 relative">
       <div className="container mx-auto px-4">
@@ -36,19 +61,38 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-          {skills.map((skill, index) => (
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-5xl mx-auto"
+        >
+          {skills.map((skill) => (
             <motion.div
               key={skill.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: index * 0.1 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="glass rounded-xl p-6 text-center group cursor-pointer"
+              variants={itemVariants}
+              whileHover={{ 
+                scale: 1.08, 
+                y: -8,
+                rotate: [0, -2, 2, 0],
+                transition: { duration: 0.3 }
+              }}
+              whileTap={{ scale: 0.95 }}
+              className="glass-panel rounded-xl p-6 text-center group cursor-pointer"
             >
               <motion.div
-                whileHover={{ rotate: [0, -10, 10, -10, 0] }}
-                transition={{ duration: 0.5 }}
+                animate={{
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+                whileHover={{ 
+                  rotate: [0, -15, 15, -15, 0],
+                  scale: [1, 1.2, 1.2, 1.2, 1]
+                }}
                 className="text-5xl mb-3"
               >
                 {skill.icon}
@@ -58,7 +102,7 @@ const Skills = () => {
               </h3>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

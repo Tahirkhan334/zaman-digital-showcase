@@ -8,6 +8,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Light mode colors */
+    --background: 0 0% 100%;
+    --foreground: 220 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 10%;
+
+    --primary: 189 97% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 95%;
+    --secondary-foreground: 220 40% 10%;
+
+    --muted: 220 20% 95%;
+    --muted-foreground: 215 20% 40%;
+
+    --accent: 189 97% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 90%;
+    --input: 220 20% 90%;
+    --ring: 189 97% 55%;
+
+    --radius: 0.75rem;
+    
+    /* Custom gradient colors - light mode */
+    --gradient-from: 189 100% 97%;
+    --gradient-via: 189 80% 90%;
+    --gradient-to: 189 70% 85%;
+    
+    /* Glass effect - light mode */
+    --glass-bg: 0 0% 100%;
+    --glass-border: 220 20% 85%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Dark mode colors */
     --background: 220 40% 4%;
     --foreground: 210 40% 98%;
 
@@ -35,37 +87,15 @@ All colors MUST be HSL.
     --border: 220 20% 20%;
     --input: 220 20% 20%;
     --ring: 189 97% 55%;
-
-    --radius: 0.75rem;
     
-    /* Custom gradient colors */
+    /* Custom gradient colors - dark mode */
     --gradient-from: 220 40% 8%;
     --gradient-via: 220 35% 12%;
     --gradient-to: 189 50% 15%;
     
-    /* Glass effect */
+    /* Glass effect - dark mode */
     --glass-bg: 220 30% 10%;
     --glass-border: 220 20% 25%;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    /* Using same dark theme as default */
   }
 }
 
@@ -76,9 +106,23 @@ All colors MUST be HSL.
 
 /* Glass morphism effect */
 .glass {
-  background: hsl(var(--glass-bg) / 0.4);
+  background: hsl(var(--glass-bg) / 0.7);
   backdrop-filter: blur(12px);
   border: 1px solid hsl(var(--glass-border) / 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.glass-panel {
+  background: hsl(var(--glass-bg) / 0.5);
+  backdrop-filter: blur(12px);
+  border: 1px solid hsl(var(--glass-border) / 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.15);
 }
 
 /* Gradient text effect */
